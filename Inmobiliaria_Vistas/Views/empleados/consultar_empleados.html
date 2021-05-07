@@ -1,0 +1,132 @@
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div cllass>
+                <form class="was-validated" ng-submit="Registrar()">
+                    <hr>
+                    <h2><b>Mis Colaboradores</b></h2>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table display  table-bordered hover datatable" width="50%">
+                            <thead>
+                                <tr>
+                                    <th width="3%">#</th>
+                                    <th width="10%">Nombres</th>
+                                    <th width="10%">Apellidos</th>
+                                    <th width="20%">Correo</th>
+                                    <th width="10%">Estado</th>
+                                    <th width="10%">Fecha nacimiento</th>
+                                    <th width="7%" class="text-center"><i class="glyphicon glyphicon-cog"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="x in Empleados">
+                                    <td class="text-XX18 text-bold">{{$index+1}}</td>
+                                    <td class="text-XX18">{{x.nombres}}</td>
+                                    <td class="text-left">{{x.apellidos}}</td>
+                                    <td class="text-left">{{x.email}}</td>
+                                    <td class="text-center text-XX"
+                                        ng-class="x.estado=='ACTIVO'?'text-success':'text-danger'">{{x.estado}}<br></td>
+                                    <td class="text-left">{{Obtener_Fecha(x.fechaNacimiento)}}</td>
+                                    <td class="">
+                                        <br>
+                                        <button type='button' ng-click="ObtenerEmpleado(x.id)"
+                                            class='btn btn-info center' style="width: 60px; height: 30px;"
+                                            title='Actualizar'><i class="glyphicon glyphicon-pencil" width="200%"
+                                                height="200%"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ActModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width: 900px; height: 400px;">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detalles del Colaborador</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="was-validated" ng-submit="ActualizarDatos()">
+                    <hr>
+                    <h2><b>Datos Personales</b></h2>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <label>
+                                <h4>Nombres</h4>
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text" class="form-control" placeholder="Ingrese sus Nombres"
+                                    ng-model="Registro.nombres" required>
+                            </div>
+                            <div ng-show="!Registro.nombres" class="text-danger"><span>*Obligatorio</span></div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <label>
+                                <h4>Apellidos</h4>
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text" class="form-control" placeholder="Ingrese sus Apellidos"
+                                    ng-model="Registro.apellidos" required>
+                            </div>
+                            <div ng-show="!Registro.apellidos" class="text-danger"><span>*Obligatorio</span></div>
+                        </div>
+
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+
+                            <label>
+                                <h4>Fecha de Nacimiento</h4>
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                                <input type="date" class="form-control" placeholder="Ingrese su fecha de nacimiento"
+                                    ng-model="Registro.fecha_nacimiento.value" required
+                                    ng-change="Registro.fecha_nacimiento.id = Obtener_Fecha(Registro.fecha_nacimiento.value)">
+                            </div>
+                            <div ng-show="!Registro.fecha_nacimiento.id" class="text-danger"><span>*Obligatorio</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <label>
+                                <h4>Correo Electrónico</h4>
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fas fa-envelope-open"></i></span>
+                                <input type="text" class="form-control" placeholder="Ingrese su correo"
+                                    ng-model="Registro.email" required ng-blur="ValidarCorreo($event.target)">
+                            </div>
+                            <div ng-show="!Registro.email" class="text-danger"><span>*Obligatorio</span></div>
+                            <div ng-show="msg_correo!=''" class="text-danger"><span ng-bind-html="msg_correo"></span>
+                            </div>
+                            <br>
+                            <br>
+                        </div>
+
+
+                    </div>
+                    <hr>
+                    <button class="btn btn-success">Actualizar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

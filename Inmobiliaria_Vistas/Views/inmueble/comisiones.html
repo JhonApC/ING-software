@@ -1,0 +1,83 @@
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+        <div cllass>
+            <form class="was-validated" >
+                <hr>
+                <h2><b>Mis Comisiones</b></h2>
+
+                <hr>
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-sm-12">	                                                                            
+                        <label><h4>Mes Inicial:</h4></label>				
+                        <div class="input-group">							
+                            <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                            <select id="mesInicial" class="form-control"   required style="width:100%" onchange="MisComisiones()">
+                                <option selected value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiempre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option  value="12">Diciembre</option>
+                            </select>                            
+                        </div>                      
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-12">	                                                                            
+                        <label><h4>Mes Final:</h4></label>				
+                        <div class="input-group">							
+                            <span class="input-group-addon"><i class="far fa-calendar-alt"></i></span>
+                            <select id="mesFinal" class="form-control"  required style="width:100%" onchange="MisComisiones()">
+                                <option value="">Seleccione el mes</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiempre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option selected value="12">Diciembre</option>
+                            </select>                            
+                        </div>                      
+                    </div>
+                </div> 	
+                <hr>
+                <div class="table-responsive">													
+                    <table class="table display  table-bordered hover datatable" width="50%">
+                        <thead>
+                            <tr>
+                                <th width="3%">#</th>
+                                <th width="10%">Titulo</th>
+                                <th width="10%">Descripción</th>
+                                <th width="10%">Fecha</th>                              
+                                <th width="10%">Comision</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in Comisiones">
+                                <td class="text-XX18 text-bold">{{$index+1}}</td>
+                                <td class="text-XX18">{{x[0]}}</td>
+                                <td class="text-left">{{x[1]}}</td>
+                                <td class="text-left">{{x[2]}}</td>
+                                <td class="text-left">{{x[3]}}</td>
+                            </tr>                            
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <div class="alert alert-success" role="alert">
+                    El valor total de comisiones para <b id="cm1">Enero</b> y <b id="cm2">Diciembre</b> son: <b id="cmt"></b>
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>
