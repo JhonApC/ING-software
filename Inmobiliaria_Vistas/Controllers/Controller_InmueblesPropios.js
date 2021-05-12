@@ -1,8 +1,8 @@
 angular.module('myApp', ['ui', 'ngSanitize', 'ngTable']).controller('ControlInmueblesPropios', function($scope, $ocLazyLoad, $rootScope, $http, General) {
 	$rootScope.clase_menu = "Inmuebles";
 	$rootScope.clase_submenu = "InmueblesPropios";  
-	
 	$scope.InicializarRegistro = function() {
+		
 		$scope.Registro = {
 			titulo:'',
 			descripcion:'',
@@ -19,7 +19,7 @@ angular.module('myApp', ['ui', 'ngSanitize', 'ngTable']).controller('ControlInmu
 			ciudad:'',
 			zona:'',
 			fecha_creacion: output2,
-			estado:'ACTIVO',
+			estado:'EN VENTA',
 			garaje:'NO',
 			precio:'',
 			idpersona : $rootScope.Sesion.id*1,
@@ -45,7 +45,29 @@ angular.module('myApp', ['ui', 'ngSanitize', 'ngTable']).controller('ControlInmu
                 
             });
 	}
-
+	$scope.ActualizarEstado = function(id){
+		console.log("actualizar estado"+id);
+		swal({
+            title: "Información",
+            text: "¿Desea Actualizar el estado de este inmueble?",
+            icon: "info",
+            buttons: ["Cancelar", "Aceptar"]
+          })
+          .then((response) => {
+            if (response) {
+				$scope.ObtenerInmueble(id);
+				console.log($scope.Registro);
+				if($scope.Registro.estado =="VENDIDO"){
+					$scope.Registro.estado ="EN VENTA"
+				}else{
+					$scope.Registro.estado ="VENDIDO";
+				}
+				
+				$scope.ActualizarInmueble($scope.Registro);                      
+            }
+        });
+	
+	}
 	$scope.ObtenerInmueble = function(id){
 		$http( {
 			method: 'GET',
@@ -56,7 +78,7 @@ angular.module('myApp', ['ui', 'ngSanitize', 'ngTable']).controller('ControlInmu
                 'Accept-Charset': undefined
 			}
 		   }).then(function successCallback(response) {              
-			    var data =response.data;
+			    data =response.data;
                 $scope.Registro.id = data.id;
 				$scope.Registro.titulo = data.titulo;
 				$scope.Registro.descripcion = data.descripcion;
@@ -76,12 +98,12 @@ angular.module('myApp', ['ui', 'ngSanitize', 'ngTable']).controller('ControlInmu
 				$scope.Registro.estado = data.estado;
 				$scope.Registro.garaje = data.garaje;
 				$scope.Registro.precio = data.precio;							
-			
             }, function errorCallback(response) {
                 
             });
 	}
 	$scope.ActualizarInmueble = function(){
+		console.log($scope.Registro.titulo);
 		$scope.Inmueble={};
 		if($scope.Registro.titulo==''||$scope.Registro.descripcion==''||
 		$scope.Registro.tipo==''||$scope.Registro.servicio==''||$scope.Registro.sanitarios==''||$scope.Registro.habitaciones==''||

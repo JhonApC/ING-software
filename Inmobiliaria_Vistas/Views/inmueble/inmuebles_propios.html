@@ -49,7 +49,7 @@
                                 </td>
                                 <td class="text-left text-XX14">{{x.servicio}}<br></td>
                                 <td class="text-center text-XX">{{Formato_Dinero(x.precio)}}<br></td>
-                                <td class="text-center text-XX" ng-class="x.estado=='EN VENTA'?'text-success':'text-danger'">{{x.estado}}<br></td>
+                                <td class="text-center text-XX" ng-click="ActualizarEstado(x.id)" ng-class="x.estado=='EN VENTA'?'text-success':'text-danger'">{{x.estado}}<br></td>
                                 <td class="text-left text-XX14">{{Obtener_Fecha(x.fechaCreacion)}}<br></td>
                                 <td class="">
                                     <br>
