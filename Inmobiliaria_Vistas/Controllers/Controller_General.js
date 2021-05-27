@@ -84,11 +84,7 @@ AppAngular.controller('Principal', function ($scope, $rootScope, General) {
         });
     }
     $rootScope.ValidarSesion= function(){
-        $rootScope.InicializarSesion();
-        if(!$rootScope.Sesion.user){
-            swal("Advertencia", "Debe Iniciar Sesion", "warning")
-            window.location= "#!/iniciarsesion";
-        }
+        
     }
 
     $rootScope.Formato_Dinero = function(number){

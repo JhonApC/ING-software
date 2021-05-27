@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.edu.poli.inmobiliaria.entitys.InmuebleEntity;
 import co.edu.poli.inmobiliaria.entitys.PersonaEntity;
 import co.edu.poli.inmobiliaria.services.PersonaService;
 
@@ -64,4 +65,18 @@ public class PersonaController {
 
 	}
 
+	@GetMapping("builder")
+	public PersonaEntity builder(@PathVariable("rol") String rol, @PathVariable("id") Long id) {
+		PersonaEntity entity = this.servicio.findById(id);
+		PersonaEntity persona = null;
+		if (rol.equals("administrador")) {
+			PersonaEntity.builder().apellidos(entity.getApellidos()).estado(entity.getEstado()).rol("administrador")
+					.build();
+		} else {
+			PersonaEntity.builder().apellidos(entity.getApellidos()).estado(entity.getEstado()).rol("comercial")
+					.build();
+
+		}
+		return persona;
+	}
 }

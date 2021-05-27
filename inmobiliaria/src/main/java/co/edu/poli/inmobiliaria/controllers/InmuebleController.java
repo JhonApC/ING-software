@@ -85,4 +85,6 @@ public class InmuebleController {
 		return entity;
 
 	}
+	
+
 }

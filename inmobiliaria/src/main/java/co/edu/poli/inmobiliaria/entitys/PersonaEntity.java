@@ -9,9 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -23,7 +29,7 @@ public class PersonaEntity {
 	private Long id;
 	private String nombres;
 	private String apellidos;
-	@Column(name = "correo", unique=true)
+	@Column(name = "correo")
 	private String email;
 	private String password;
 	@Column(name ="fecha_creacion",columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP")

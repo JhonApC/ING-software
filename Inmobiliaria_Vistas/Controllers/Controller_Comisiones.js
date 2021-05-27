@@ -22,7 +22,7 @@ angular.module('myApp', ['ui', 'ngSanitize', 'ngTable']).controller('ControlComi
                 data.forEach(element => {
                     valorComisiones += element[3]
                 });						
-                $("#cmt").text('$'+valorComisiones);
+                $("#cmt").text($rootScope.Formato_Dinero(valorComisiones));
                 $("#cm1").text($("#mesInicial option:selected").text());
                 $("#cm2").text($("#mesFinal option:selected").text());
             }, function errorCallback(response) {

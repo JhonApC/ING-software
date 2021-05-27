@@ -7,7 +7,7 @@ angular.module('myApp', ['ui', 'ngSanitize', 'ngTable']).controller('ControlCons
             nombres: '',
             apellidos: '',
             email: '',
-            estado: '',
+            estado: 'ACTIVO',
             fecha_nacimiento:{
 				value: null,
 				id:''
@@ -47,6 +47,7 @@ angular.module('myApp', ['ui', 'ngSanitize', 'ngTable']).controller('ControlCons
             }
         }).then(function successCallback(response) {
             var data = response.data;
+			$scope.Registro.id =id;
             $scope.Registro.nombres = data.nombres;
             $scope.Registro.apellidos =data.apellidos;
             $scope.Registro.email=data.email;
@@ -110,7 +111,7 @@ angular.module('myApp', ['ui', 'ngSanitize', 'ngTable']).controller('ControlCons
 		}).then(function successCallback(response) {
 			swal("Información", "Datos Actualizados con exito", "success")
 			$scope.InicializarRegistro();
-			$scope.DatosPersonales();
+			$scope.NuestrosEmpleados();
 			$scope.formclave='false';
 		}, function errorCallback(response) {
 			swal("Error", "Datos no actualizados", "error")
